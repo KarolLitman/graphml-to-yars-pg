@@ -107,6 +107,9 @@ public abstract class element {
                 if(isNumeric(entry.getValue())){
                     value=entry.getValue();
                 }
+                else if(entry.getValue().substring(0,1).equals("[")){
+                    value=entry.getValue();
+                }
                 else{
                     value="\"" +entry.getValue()+ "\"";
                 }
