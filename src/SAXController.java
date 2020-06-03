@@ -108,23 +108,23 @@ public class SAXController extends DefaultHandler {
             if (attributes.getLength()>0) {
                 for (int i=0; i<attributes.getLength(); i++) {
 
-                    if(attributes.getLocalName(i).toString().equals("id")){
+                    if(attributes.getLocalName(i).equals("id")){
                         ((edge) obj).setId(attributes.getValue(i));
                     }
-                    else if(attributes.getLocalName(i).toString().equals("label")) {
+                    else if(attributes.getLocalName(i).equals("label")) {
 
 
                             ((edge) obj).setLabel(attributes.getValue(i));
                     }
-                    else if(attributes.getLocalName(i).toString().equals("source")) {
+                    else if(attributes.getLocalName(i).equals("source")) {
 
                         ((edge) obj).setVertex_start(attributes.getValue(i));
                     }
-                    else if(attributes.getLocalName(i).toString().equals("target")) {
+                    else if(attributes.getLocalName(i).equals("target")) {
 
                         ((edge) obj).setVertex_end(attributes.getValue(i));
                     }
-                    else if(attributes.getLocalName(i).toString().equals("key")){
+                    else if(attributes.getLocalName(i).equals("key")){
                         key=attributes.getValue(i);
 
                     }
@@ -167,12 +167,13 @@ public class SAXController extends DefaultHandler {
 
         if (!content.equals("")) {
             tabulation();
-            if(isVertex){
+            if(isVertex&&!(key.equals("id")||key.equals("labels"))){
+
                 ((vertex) obj).setProperty(key,content);
 
             }
         }
-        else if(isEdge){
+        if(isEdge&&!(key.equals("id")||key.equals("labels"))){
             ((edge) obj).setProperty(key,content);
 
         }
