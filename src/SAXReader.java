@@ -7,10 +7,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class SAXReader {
-    public static void read(){
+    public static void read(String inputfilename){
 
-        System.out.println("Enter GraphML filename");
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(inputfilename);
 
         String filename=scan.nextLine();
 

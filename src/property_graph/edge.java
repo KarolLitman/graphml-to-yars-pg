@@ -50,7 +50,7 @@ public class edge extends element{
     }
 
     String getidYARSPGFormat(){
-        if (!id.isEmpty()) {
+        if (id!=null) {
             String temp = "<\""+id+"\">";
             return temp;
         } else {
@@ -60,7 +60,7 @@ public class edge extends element{
 
     @Override
     public String toString() {
-        return "(\"" + vertex_start + "\")" + getidYARSPGFormat() +
+        return "(\"" + vertex_start + "\")-" + getidYARSPGFormat() +
                 "" + getLabelsYARSPGFormat() +
                 getpropertiesYARSPGFormat() + "->(\"" + vertex_end + "\")";
     }

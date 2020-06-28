@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+<graph edgedefault="directed">
+<node id="o1">
+<data key="labels">:Osoba</data>
+<data key="imie">Jan</data>
+<data key="wiek">20</data>
+</node>
+<node id="o1">
+<data key="labels">:Osoba</data>
+<data key="imie">Marek</data>
+<data key="wiek">21</data>
+</node>
+<node id="o1">
+<data key="labels">:Osoba</data>
+<data key="imie">Patryk</data>
+<data key="wiek">22</data>
+</node>
+<node id="o1">
+<data key="labels">:Osoba</data>
+<data key="imie">Anna</data>
+<data key="wiek">23</data>
+</node>
+<node id="o1">
+<data key="labels">:Osoba</data>
+<data key="imie">Piotr</data>
+<data key="wiek">23</data>
+</node>
+<edge label="zna" source="o1" target="o2"></edge>
+<edge label="zna" source="o2" target="o3"></edge>
+<edge label="kocha" source="o3" target="o4"></edge>
+<edge label="kocha" source="o4" target="o3"></edge>
+<edge label="zna" source="o3" target="o5"></edge>
+</graph>
+</graphml>

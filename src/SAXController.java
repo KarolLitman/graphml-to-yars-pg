@@ -15,8 +15,7 @@ public class SAXController extends DefaultHandler {
     Object obj;
     String key=null;
 
-    PrintWriter pw;
-    BufferedWriter writer;
+
 
 
     String path_to_file;
@@ -32,12 +31,7 @@ public class SAXController extends DefaultHandler {
 
 
 
-        try {
-             writer = new BufferedWriter(new FileWriter("test.yarspg", false), 8192 * 4);
-             System.out.print("processing...");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
 
         tabulation();
@@ -51,12 +45,7 @@ public class SAXController extends DefaultHandler {
         tabulation();
 
 
-        try {
-            writer.close();
-            System.out.println("\nThe YARS-PG file was created with filename test.yarspg");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
     }
 
@@ -72,6 +61,7 @@ public class SAXController extends DefaultHandler {
         }
         else if(localName.equals("edge")) {
             isEdge = true;
+            obj=new edge();
         }
 
             if(isVertex){
@@ -101,12 +91,12 @@ public class SAXController extends DefaultHandler {
 
 
         }
-        else if(localName.equals("edge")){
-            obj=new edge();
+        else if(isEdge){
 
 
             if (attributes.getLength()>0) {
                 for (int i=0; i<attributes.getLength(); i++) {
+
 
                     if(attributes.getLocalName(i).equals("id")){
                         ((edge) obj).setId(attributes.getValue(i));
@@ -137,27 +127,20 @@ public class SAXController extends DefaultHandler {
     }
 
     @Override
-    public void endElement(String uri, String localName, String qName)
-            throws SAXException {
+    public void endElement(String uri, String localName, String qName) {
         tab--;
         tabulation();
         if(localName.equals("node")){
             isVertex=false;
-            try {
-                writer.write(obj.toString()+"\n");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            System.out.println(obj.toString());
         }
         else if(localName.equals("edge")){
             isEdge=false;
-            try {
-                writer.write(obj.toString()+"\n");
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            System.out.println(obj.toString());
             }
         }
-    }
+
 
     @Override
     public void characters(char[] ch, int start, int length)
@@ -167,15 +150,18 @@ public class SAXController extends DefaultHandler {
 
         if (!content.equals("")) {
             tabulation();
-            if(isVertex&&!(key.equals("id")||key.equals("labels"))){
+            if(isVertex&&key.equals("label")){
+                ((vertex) obj).setLabel(content);
+            }
+            else if(isVertex&&!(key.equals("id")||key.equals("labels"))){
 
                 ((vertex) obj).setProperty(key,content);
 
             }
+            if(isEdge&&!(key.equals("id")||key.equals("labels")||key.equals("label"))){
+                ((edge) obj).setProperty(key,content);
+            }
         }
-        if(isEdge&&!(key.equals("id")||key.equals("labels"))){
-            ((edge) obj).setProperty(key,content);
 
-        }
     }
 }

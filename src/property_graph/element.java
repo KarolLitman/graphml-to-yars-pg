@@ -103,6 +103,8 @@ public abstract class element {
             String temp = "[";
             for (Map.Entry<String, String> entry : properties.entrySet()) {
 
+if(!entry.getValue().isEmpty()){
+
 
                 if(isNumeric(entry.getValue())){
                     value=entry.getValue();
@@ -115,6 +117,12 @@ public abstract class element {
                 }
 
                 temp += "\"" +entry.getKey() +"\"" + ":"+ value+",";
+
+}
+else{
+    System.out.println("why"+entry.getKey()+" "+entry.getValue());
+}
+
             }
             temp=temp.substring(0, temp.length() - 1);
             temp += "]";
